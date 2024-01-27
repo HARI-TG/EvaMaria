@@ -694,7 +694,7 @@ async def get_cap(settings, remaining_seconds, files, query, total_results, sear
             for file in files:
                 cap += f"<b>📁 <a href='https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}'>[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file.caption.split()))}\n\n</a></b>"
         else:
-            imdb = await get_poster(search, file=(files[0]).file.caption) if settings["imdb"] else None
+            imdb = await get_poster(search, file=files.caption if settings["imdb"] else None
             if imdb:
                 TEMPLATE = script.IMDB_TEMPLATE_TXT
                 cap = TEMPLATE.format(
