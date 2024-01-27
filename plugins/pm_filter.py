@@ -216,9 +216,9 @@ async def language_check(bot, query):
         ])
             
         if offset != "":
-        key = f"{query.message.chat.id}-{query.message.id}"
-        BUTTONS[key] = movie
-        req = userid
+            key = f"{query.message.chat.id}-{query.message.id}"
+            BUTTONS[key] = movie
+            req = userid
             btn.append(
                 [InlineKeyboardButton(text=f"𝐏𝐀𝐆𝐄 1/{math.ceil(int(total_results) / 7)}", callback_data="pages"),
                  InlineKeyboardButton(text="𝐍𝐄𝐗𝐓 ⌦", callback_data=f"next_{req}_{key}_{offset}")]
