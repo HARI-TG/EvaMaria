@@ -692,9 +692,12 @@ async def get_cap(settings, remaining_seconds, files, query, total_results, sear
             cap = IMDB_CAP
             cap+="<b>\n\n<u>📚 Requested Files 👇</u></b>\n\n"
             for file in files:
-                cap += f"<b>📁 <a href='https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}'>[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_caption.split()))}\n\n</a></b>"
+                f_caption = file.caption
+                title = file.file_name
+                size = get_size(file.file_size)
+                cap += f"<b>📁 <a href='https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}'>[{size}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.f_caption.split()))}\n\n</a></b>"
         else:
-            imdb = await get_poster(search, file=(files[0]).file_caption) if settings["imdb"] else None
+            imdb = await get_poster(search, if settings["imdb"] else None
             if imdb:
                 TEMPLATE = script.IMDB_TEMPLATE_TXT
                 cap = TEMPLATE.format(
@@ -730,15 +733,15 @@ async def get_cap(settings, remaining_seconds, files, query, total_results, sear
                 )
                 cap+="<b>\n\n<u>📚 Requested Files 👇</u></b>\n\n"
                 for file in files:
-                    cap += f"<b>📁 <a href='https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}'>[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_caption.split()))}\n\n</a></b>"
+                    cap += f"<b>📁 <a href='https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}'>[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.f_caption.split()))}\n\n</a></b>"
             else:
                 cap = f"<b>Hᴇʏ {query.from_user.mention}, Fᴏᴜɴᴅ {total_results} Rᴇsᴜʟᴛs ғᴏʀ Yᴏᴜʀ Qᴜᴇʀʏ {search}\n\n</b>"
                 cap+="<b><u>📚 Requested Files 👇</u></b>\n\n"
                 for file in files:
-                    cap += f"<b>📁 <a href='https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}'>[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_caption.split()))}\n\n</a></b>"
+                    cap += f"<b>📁 <a href='https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}'>[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.f_caption.split()))}\n\n</a></b>"
     else:
         cap = f"<b>Hᴇʏ {query.from_user.mention}, Fᴏᴜɴᴅ {total_results} Rᴇsᴜʟᴛs ғᴏʀ Yᴏᴜʀ Qᴜᴇʀʏ {search}\n\n</b>"
         cap+="<b><u>📚 Requested Files 👇</u></b>\n\n"
         for file in files:
-            cap += f"<b>📁 <a href='https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}'>[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_caption.split()))}\n\n</a></b>"
+            cap += f"<b>📁 <a href='https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}'>[{get_size(file.file_size)}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.f_caption.split()))}\n\n</a></b>"
     return cap
